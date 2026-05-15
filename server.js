@@ -7,12 +7,12 @@ const port = process.env.PORT || 8080;
 
 const MONGODB_URI = process.env.MONGODB_URI_SAMPLE;
 const DATABASE_NAME = process.env.MONGODB_DB_NAME || "sample_restaurants";
-const COLLECTION_NAME = process.env.MONGODB_COLLECTION_NAME || "restaurants";
+const COLLECTION_NAME = process.env.MONGODB_COLLECTION_NAME || "cohorts";
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY || "";
 
 // Change this constant later if you want a different fixed cuisine filter.
-const STATIC_CUISINE_QUERY = "Italian";
-const SEARCH_RADIUS_KM = 100;
+const STATIC_CUISINE_QUERY = "American";
+const SEARCH_RADIUS_KM = 1000;
 const MAX_RESULTS = 25;
 
 if (!MONGODB_URI) {

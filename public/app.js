@@ -192,25 +192,24 @@ function renderResults(results, currentLocation) {
 
   bounds.extend(currentLatLng);
 
-  results.forEach((restaurant) => {
+  results.forEach((rslt) => {
     const latLng = {
-      lat: restaurant.location.latitude,
-      lng: restaurant.location.longitude
+      lat: rslt.restaurant.address.coord[0],
+      lng: rslt.restaurant.address.coord[1]
     };
 
     const marker = new google.maps.Marker({
       map,
       position: latLng,
-      title: restaurant.name
+      title: rslt.restaurant.name
     });
 
     const infoWindow = new google.maps.InfoWindow({
       content: `
         <div style="max-width:240px;line-height:1.4;">
-          <strong>${escapeHtml(restaurant.name)}</strong><br />
-          ${escapeHtml(restaurant.cuisine)}<br />
-          ${escapeHtml(formatAddress(restaurant.address))}<br />
-          ${restaurant.distanceKm} km away
+          <strong>${escapeHtml(rslt.restaurant.name)}</strong><br />
+          ${escapeHtml(rslt.restaurant.cuisine)}<br />
+          ${escapeHtml(formatAddress(rslt.restaurant.address))}
         </div>
       `
     });
@@ -222,10 +221,9 @@ function renderResults(results, currentLocation) {
     const item = document.createElement("li");
     item.className = "result-card";
     item.innerHTML = `
-      <h3>${escapeHtml(restaurant.name)}</h3>
-      <p><strong>Cuisine:</strong> ${escapeHtml(restaurant.cuisine)}</p>
-      <p><strong>Distance:</strong> ${restaurant.distanceKm} km</p>
-      <p><strong>Address:</strong> ${escapeHtml(formatAddress(restaurant.address))}</p>
+      <h3>${escapeHtml(rslt.restaurant.name)}</h3>
+      <p><strong>Cuisine:</strong> ${escapeHtml(rslt.restaurant.cuisine)}</p>
+      <p><strong>Address:</strong> ${escapeHtml(formatAddress(rslt.restaurant.address))}</p>
     `;
     resultsList.appendChild(item);
   });
