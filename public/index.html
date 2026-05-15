@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Search Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h1>Restaurant Search Demo</h1>
+        <p class="intro">
+          Search for nearby restaurants using MongoDB aggregation pipelines and display the results on Google Maps.
+        </p>
+
+        <div class="callout">
+          <strong>Static cuisine query:</strong>
+          <span id="staticCuisineValue">Loading…</span>
+        </div>
+
+        <form id="searchForm">
+          <label>
+            Age
+            <input type="number" id="age" min="18" max="99" placeholder="35" required />
+          </label>
+
+          <label>
+            Gender
+            <select id="gender" required>
+              <option value="">Select…</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </label>
+
+          <label>
+            Country of origin
+            <select id="countryOfOrigin" required>
+              <option value="">Select…</option>
+              <option>United Kingdom</option>
+              <option>Ireland</option>
+              <option>France</option>
+              <option>Germany</option>
+              <option>Spain</option>
+              <option>Italy</option>
+              <option>Netherlands</option>
+              <option>Portugal</option>
+              <option>Sweden</option>
+              <option>Canada</option>
+              <option>United States</option>
+              <option>Australia</option>
+            </select>
+          </label>
+
+          <label>
+            Search location
+            <input
+              type="text"
+              id="locationSearch"
+              placeholder="Enter a city, postcode, or address"
+              autocomplete="off"
+              required
+            />
+          </label>
+
+          <div class="button-row">
+            <button type="button" id="useMyLocationBtn" class="secondary">Use my current location</button>
+            <button type="submit">Search restaurants</button>
+          </div>
+        </form>
+
+        <section class="results-panel">
+          <div class="results-header">
+            <h2>Results</h2>
+            <span id="resultCount">0</span>
+          </div>
+          <div id="statusMessage" class="status">Enter criteria and run a search.</div>
+          <ul id="resultsList"></ul>
+        </section>
+      </aside>
+
+      <main class="map-panel">
+        <div id="map"></div>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

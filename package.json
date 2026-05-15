@@ -5,11 +5,12 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "test"
   },
   "dependencies": {
+    "express": "^5.2.1",
     "mongodb": "^7.2.0"
   }
 }
