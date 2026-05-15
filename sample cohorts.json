@@ -1,0 +1,50 @@
+{
+  "age": {
+  	"min": 20,
+  	"max": 40
+  },
+	"gender": "Female",
+  "countries": [
+    "Portugal", "Spain"
+  ], 
+	"cuisine": "Mexican",
+	"emailDomains": [ "mail.com", "demo.net"]
+},
+{
+  "age": {
+  	"min": 30,
+  	"max": 50
+  },
+	"gender": "Male",
+  "countries": [
+    "France", "Germany"
+  ],
+	"cuisine": "Italian",
+	"emailDomains": [ "work.com", "company.org" ]
+},
+{
+  "age": {
+  	"min": 25,
+  	"max": 35
+  },    
+  "gender": "Male",
+    "countries": [
+        "United States", "Canada"
+    ],
+    "cuisine": "Chinese",
+    "emailDomains": [ "example.com", "fakeemail.org" ]
+},
+{
+  "age": {
+  	"min": 60,
+  	"max": 99
+  },    
+  "gender": "Male",
+    "countries": [
+         "United Kingdom", "Ireland", "France", "Germany", "Spain",
+  "Italy", "Netherlands", "Portugal", "Sweden", "Canada",
+  "United States", "Australia"
+    ],
+    "cuisine": "Chicken",
+    "emailDomains": [ "mail.com", "fakeemail.org" ]
+}
