@@ -193,39 +193,7 @@ function renderResults(results, currentLocation) {
   bounds.extend(currentLatLng);
 
   results.forEach((rslt) => {
-    const latLng = {
-      lat: rslt.restaurant.address.coord[0],
-      lng: rslt.restaurant.address.coord[1]
-    };
-
-    const marker = new google.maps.Marker({
-      map,
-      position: latLng,
-      title: rslt.restaurant.name
-    });
-
-    const infoWindow = new google.maps.InfoWindow({
-      content: `
-        <div style="max-width:240px;line-height:1.4;">
-          <strong>${escapeHtml(rslt.restaurant.name)}</strong><br />
-          ${escapeHtml(rslt.restaurant.cuisine)}<br />
-          ${escapeHtml(formatAddress(rslt.restaurant.address))}
-        </div>
-      `
-    });
-
-    marker.addListener("click", () => infoWindow.open({ anchor: marker, map }));
-    markers.push(marker);
-    bounds.extend(latLng);
-
-    const item = document.createElement("li");
-    item.className = "result-card";
-    item.innerHTML = `
-      <h3>${escapeHtml(rslt.restaurant.name)}</h3>
-      <p><strong>Cuisine:</strong> ${escapeHtml(rslt.restaurant.cuisine)}</p>
-      <p><strong>Address:</strong> ${escapeHtml(formatAddress(rslt.restaurant.address))}</p>
-    `;
-    resultsList.appendChild(item);
+    addRestuarantMarker(rslt);
   });
 
   if (results.length === 0) {
@@ -238,7 +206,39 @@ function renderResults(results, currentLocation) {
     return;
   }
 
-  map.fitBounds(bounds, 60);
+  //map.fitBounds(bounds, 60);
+}
+
+async function addRestuarantMarker(rslt) {
+  //const latLng =  await  geocodeAddress('${rslt.restaurant.address.building} ${rslt.restaurant.address.street} ${rslt.restaurant.address.zipcode} ${rslt.restaurant.borough} New York');
+  const marker = new google.maps.Marker({
+    map,
+    position: { lat: rslt.restaurant.address.coord[1], lng: rslt.restaurant.address.coord[0] },
+    title: rslt.restaurant.name
+  });
+
+  const infoWindow = new google.maps.InfoWindow({
+    content: `
+      <div style="max-width:240px;line-height:1.4;">
+        <strong>${escapeHtml(rslt.restaurant.name)}</strong><br />
+        ${escapeHtml(rslt.restaurant.cuisine)}<br />
+        ${escapeHtml(formatAddress(rslt.restaurant.address))}
+      </div>
+    `
+  });
+
+  marker.addListener("click", () => infoWindow.open({ anchor: marker, map }));
+  markers.push(marker);
+  //bounds.extend(latLng);
+
+  const item = document.createElement("li");
+  item.className = "result-card";
+  item.innerHTML = `
+    <h3>${escapeHtml(rslt.restaurant.name)}</h3>
+    <p><strong>Cuisine:</strong> ${escapeHtml(rslt.restaurant.cuisine)}</p>
+    <p><strong>Address:</strong> ${escapeHtml(formatAddress(rslt.restaurant.address))}</p>
+  `;
+  resultsList.appendChild(item);
 }
 
 function clearMarkers() {

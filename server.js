@@ -113,8 +113,8 @@ function buildRestaurantPipeline({ latitude, longitude, age, gender, countryOfOr
                 '$geoWithin': {
                     '$center': [
                     [
-                        latitude, longitude
-                    ], 100
+                        longitude, latitude
+                    ], 10/6000
                     ]
                 }
                 }
