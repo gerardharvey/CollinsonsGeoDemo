@@ -126,35 +126,41 @@ function buildRestaurantPipeline({ latitude, longitude, age, gender, countryOfOr
         'as': 'result'
         }
     }, {
-        '$unwind': {
-        'path': '$result'
-        }
+    '$unwind': {
+      'path': '$result'
+      }
     }, {
-        '$replaceRoot': {
+      '$replaceRoot': {
         'newRoot': '$result'
-        }
+      }
     }, {
-        '$lookup': {
+      '$lookup': {
         'from': 'restaurants', 
         'localField': 'restaurant_ref.restaurant_object_id', 
         'foreignField': '_id', 
         'as': 'restaurant'
-        }
+      }
     }, {
-        '$set': {
+      '$set': {
         'restaurant': {
-            '$arrayElemAt': [
+          '$arrayElemAt': [
             '$restaurant', 0
-            ]
+          ]
         }
-        }
+      }
     }, {
-        '$project': {
-        'customer': 1, 
-        'restaurant': 1
+      '$group': {
+        '_id': '$restaurant._id', 
+        'restaurant': {
+          '$first': '$restaurant'
         }
+      }
+    }, {
+      '$replaceRoot': {
+        'newRoot': '$restaurant'
+      }
     }
-    ];
+  ];
 }
 
 async function start() {
